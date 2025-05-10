@@ -146,21 +146,27 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 ### 3.3. Wireframes (Semana 03)
 
 **Tela 1: Login**
+
 <img src="/assets/wad/login_taskflow.png">
 
 **Tela 2: Cadastro**
+
 <img src="/assets/wad/cadastro_taskflow.png">
 
 **Tela 3: Início**
+
 <img src="/assets/wad/inicio_taskflow.png">
 
 **Tela 4: Criação e Edição de Tarefas**
-<img src="/assets/wad/criaTask_taskflow.png">
+
+<img src="/assets/wad/criar_taskflow.png">
 
 **Tela 5: Visualização de Tarefa**
+
 <img src="/assets/wad/view_taskflow.png">
 
 **Tela 6: Visualização de Calendário**
+
 <img src="/assets/wad/calendario_taskflow.png">
 
 **Descrição dos wireframes**
