@@ -38,8 +38,6 @@ Persona 2
 
 ### 2.2. User Stories
 
-### 2.2 – User Stories
-
 | ID   | User Story                                                                                                                                                     |
 | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | US01 | Como estudante universitária, quero atribuir níveis de prioridade às minhas tarefas, para que eu consiga organizar melhor meu tempo entre faculdade e estágio. |
@@ -125,6 +123,10 @@ Cada tarefa possui exatamente um status (Status) – relação N:1.
 
 Cada tarefa tem uma prioridade associada (Priority) – relação N:1.
 
+**Modelagem Física do Banco de Dados**
+
+A modelagem física desse banco de dados se encontra no seguinte caminho de arquivos `/scripts/init.slq`. Para acessar diretamente <a href="/scripts/init.sql">Clique aqui!</a>
+
 ### 3.1.1 BD e Models (Semana 5)
 
 _Descreva aqui os Models implementados no sistema web_
@@ -143,7 +145,37 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 
 ### 3.3. Wireframes (Semana 03)
 
-_Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização)._
+**Tela 1: Login**
+<img src="/assets/wad/login_taskflow.png">
+
+**Tela 2: Cadastro**
+<img src="/assets/wad/cadastro_taskflow.png">
+
+**Tela 3: Início**
+<img src="/assets/wad/inicio_taskflow.png">
+
+**Tela 4: Criação e Edição de Tarefas**
+<img src="/assets/wad/criaTask_taskflow.png">
+
+**Tela 5: Visualização de Tarefa**
+<img src="/assets/wad/view_taskflow.png">
+
+**Tela 6: Visualização de Calendário**
+<img src="/assets/wad/calendario_taskflow.png">
+
+**Descrição dos wireframes**
+
+1. `Tela de Login:` A primeira interface exibida ao usuário. Nela, o sistema exibe uma mensagem de boas-vindas e solicita que o usuário faça o login utilizando suas credenciais. Há também um botão destacado ("Criar conta") que leva o usuário para a tela de cadastro, caso ainda não possua uma conta.
+
+2. `Tela de Cadastro:` Esta tela serve para o registro de novos usuários. Apresenta um formulário simples com campos para preenchimento de dados essenciais, como nome, e-mail e senha. Um botão de ação azul permite concluir o cadastro e prosseguir diretamente para a Tela Inicial do sistema.
+
+3. `Tela Inicial:` A tela central do TaskFlow, onde o usuário gerencia suas tarefas. A interface é organizada no estilo kanban, separando tarefas em duas colunas: To do (a fazer), Doing (em andamento). Na lateral direita, há uma área de notificações, onde são exibidas tarefas com prazo próximo do vencimento. Clicar em uma notificação (vermelho) leva o usuário à Tela de Visualização da Tarefa. Além de outros elementos como um menu lateral à esquerda com botões de atalho para navegação entre telas, botão para criar uma nova tarefa e acesso ao calendário mensal, que exibe as tarefas por data.
+
+4. `Tela de Criação/Edição de Tarefa:`Esta interface permite criar ou editar uma tarefa existente. É composta por um campo de título, campo de data de conclusão, campo de descrição. Além de Três seletores para definir a categoria da task, sua prioridade e seu status (To do / Doing / Done), incluindo também um botão (azul) que salva a tarefa e retorna o usuário à Tela Inicial.
+
+5. `Tela de Visualização da Tarefa:` Tela dedicada a exibir todos os detalhes de uma tarefa específica, exibindo os seguintes elementos: Título, Data de conclusão, Descrição, Categoria, Prioridade, status.Contendo dois botões de ação: editar tarefa (azul), que leva à tela de edição e concluir tarefa (verde), que atualiza o status para "Done".
+
+6. `Tela de Calendário:` Calendário mensal com visualização clara das tarefas em seus respectivos dias. Cada tarefa é representada por uma cor distinta, conforme sua categoria, facilitando a identificação rápida de compromissos. Ao clicar em uma tarefa dentro do calendário o usuário é levado à Tela de Visualização da Tarefa.
 
 ### 3.4. Guia de estilos (Semana 05)
 
