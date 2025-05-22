@@ -44,3 +44,9 @@ ALTER TABLE Task ADD FOREIGN KEY (priority_id) REFERENCES Priority (id);
 ALTER TABLE Task ADD FOREIGN KEY (category_id) REFERENCES Category (id);
 
 INSERT INTO AppUser values(default, 'Lorenzo', 'Aggio', 'lorenzo.aggio@teste.com', '123456');
+
+INSERT INTO Category values(default, 'Faculdade'), (default, 'Trabalho');
+
+INSERT INTO Priority values(default, 'Baixa'), (default, 'Media'), (default, 'Alta');
+
+INSERT INTO Status values(default, 'A fazer'), (default, 'Fazendo'), (default, 'Feito');

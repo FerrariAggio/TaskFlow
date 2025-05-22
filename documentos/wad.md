@@ -189,7 +189,39 @@ _Descreva aqui orientações gerais para o leitor sobre como utilizar os compone
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
-_Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização)._
+**Tela 1: Login**
+
+<img src="/assets/wad/login-alta.png">
+
+**Tela 2: Cadastro**
+
+<img src="/assets/wad/cadastro-alta.png">
+
+**Tela 3: Início**
+
+<img src="/assets/wad/cadastro-alta.png">
+
+**Tela 4: Criação e Edição de Tarefas**
+
+<img src="/assets/wad/novaTarefa-alta.png">
+
+**Tela 5: Visualização de Tarefa**
+
+<img src="/assets/wad/detalhes-alta.png">
+
+**Tela 6: Lista de tarefas**
+
+<img src="/assets/wad/listaTarefas-alta.png">
+
+**Guia de estilos**
+
+<img src="/assets/wad/guia-de-estilos.png">
+
+**Layout da página**
+
+<img src="/assets/wad/layout-alta.png">
+
+Todas esses protótipos de telas e o guias de estilos foram feitos por meio do Figma, estando disponível para visualização no seguinte link: [Figma](https://www.figma.com/design/c518pdwfAtSeeCML8O8cVd/TaskFlow?node-id=0-1&p=f&t=fEW9VrGZuktYMp9v-0)
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
