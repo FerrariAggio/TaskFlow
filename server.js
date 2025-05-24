@@ -19,6 +19,9 @@ db.connect()
     const frontendRoutes = require("./routes/frontRoutes");
     app.use("/", frontendRoutes);
 
+    const taskRoutes = require("./routes/taskRoutes");
+    app.use("/task", taskRoutes);
+
     // Middleware para lidar com erros de rota não encontrada
     app.use((req, res, next) => {
       res.status(404).send("Página não encontrada");

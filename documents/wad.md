@@ -129,19 +129,39 @@ A modelagem física desse banco de dados se encontra no seguinte caminho de arqu
 
 ### 3.1.1 BD e Models (Semana 5)
 
-_Descreva aqui os Models implementados no sistema web_
+Na arquitetura MVC da aplicação TaskFlow, os models atuam como a camada responsável por interagir diretamente com o banco de dados. Eles possuem métodos que são acionados pelos controllers para executarem comandos SQL e então realizar operações como inserção, atualização, remoção e consulta de registros. A aplicação possui dois models, sendo eles `userModel` e `taskModel`.
+
+O `userModel` é responsável por executar todas as operações relacionadas aos usuários no banco de dados. Ele contém funções específicas, tais como:
+
+criarUser(data): Recebe os dados de um novo usuário e executa uma query INSERT para armazená-lo na tabela User.
+
+listarUser(): Executa uma query SELECT para retornar todos os registros da tabela User.
+
+obterUser(id): Recebe o parâmetro id e executa uma query SELECT filtrando o usuário específico.
+
+atualizarUser(id, data): Recebe um id e os novos dados para atualizar o registro correspondente usando uma query UPDATE.
+
+deletarUser(id): Recebe o id e executa uma query DELETE para remover o usuário do banco.
+
+O `taskModel` é responsável por executar todas as operações relacionadas às tarefas no banco de dados. Ele contém funções específicas, tais como:
+
+criarTask(data): Recebe os dados de uma nova tarefa e executa uma query INSERT na tabela Task.
+
+listarTask(): Executa uma query SELECT para retornar todas as tarefas cadastradas.
+
+obterTask(id): Recebe o parâmetro id e executa uma query SELECT filtrando uma tarefa específica.
+
+atualizarTask(id, data): Recebe um id e os novos dados para atualizar a tarefa correspondente via query UPDATE.
+
+deletarTask(id): Recebe o id e executa uma query DELETE para excluir a tarefa do banco.
 
 ### 3.2. Arquitetura (Semana 5)
 
-_Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário._
+<img src="/assets/wad/diagrama-mvc.png">
 
-**Instruções para criação do diagrama de arquitetura**
+Na aplicação TaskFlow, estruturada em arquitetura MVC (Model-View-Controller), o fluxo de dados inicia quando o usuário interage com a interface (View), como ao realizar login, cadastrar-se ou gerenciar tarefas. A View envia essas requisições ao Controller, que processa e valida as informações, acionando o Model correspondente para executar operações no banco de dados (PostgreSQL), como consultas, inserções ou atualizações.
 
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-
-_Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View._
+O Model realiza a manipulação direta dos dados e retorna o resultado ao Controller, que então prepara e envia a resposta para a View, atualizando a interface do usuário. Essa separação de responsabilidades permite uma organização mais clara do sistema, facilitando sua manutenção, escalabilidade e reuso de componentes.
 
 ### 3.3. Wireframes (Semana 03)
 
@@ -185,7 +205,15 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 
 ### 3.4. Guia de estilos (Semana 05)
 
-_Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução._
+**Guia de estilos**
+
+<img src="/assets/wad/guia-de-estilos.png">
+
+**Layout da página**
+
+<img src="/assets/wad/layout-alta.png">
+
+Todas esses protótipos de telas e o guias de estilos foram feitos por meio do Figma, estando disponível para visualização no seguinte link: [Figma](https://www.figma.com/design/c518pdwfAtSeeCML8O8cVd/TaskFlow?node-id=0-1&p=f&t=fEW9VrGZuktYMp9v-0)
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
@@ -213,19 +241,25 @@ _Descreva aqui orientações gerais para o leitor sobre como utilizar os compone
 
 <img src="/assets/wad/listaTarefas-alta.png">
 
-**Guia de estilos**
-
-<img src="/assets/wad/guia-de-estilos.png">
-
-**Layout da página**
-
-<img src="/assets/wad/layout-alta.png">
-
-Todas esses protótipos de telas e o guias de estilos foram feitos por meio do Figma, estando disponível para visualização no seguinte link: [Figma](https://www.figma.com/design/c518pdwfAtSeeCML8O8cVd/TaskFlow?node-id=0-1&p=f&t=fEW9VrGZuktYMp9v-0)
-
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-_Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema._
+Endpoints são pontos de entrada ou saída em uma aplicação web, utilizados para comunicação entre o cliente (como navegadores, aplicativos) e o servidor. Cada endpoint corresponde a uma rota que executa uma ação específica no sistema, como buscar dados, criar registros, atualizar ou excluir informações. Eles são fundamentais no desenvolvimento de APIs (Interfaces de Programação de Aplicações), permitindo que diferentes sistemas troquem informações de forma estruturada e segura.
+
+| Método | Rota   | Descrição                             | Controller                     |
+| ------ | ------ | ------------------------------------- | ------------------------------ |
+| GET    | `/`    | Lista todos os usuários               | `userController.listarUser`    |
+| GET    | `/:id` | Obtém detalhes de um usuário pelo ID  | `userController.obterUser`     |
+| POST   | `/`    | Cria um novo usuário                  | `userController.criarUser`     |
+| PUT    | `/:id` | Atualiza um usuário existente pelo ID | `userController.atualizarUser` |
+| DELETE | `/:id` | Deleta um usuário pelo ID             | `userController.deletarUser`   |
+
+| Método | Rota        | Descrição                    | Controller                     |
+| ------ | ----------- | ---------------------------- | ------------------------------ |
+| POST   | `/task`     | Cria uma nova tarefa         | `TaskController.criarTask`     |
+| GET    | `/task`     | Lista todas as tarefas       | `TaskController.listarTask`    |
+| GET    | `/task/:id` | Obtém detalhes de uma tarefa | `TaskController.obterTask`     |
+| PUT    | `/task/:id` | Atualiza uma tarefa pelo ID  | `TaskController.atualizarTask` |
+| DELETE | `/task/:id` | Deleta uma tarefa pelo ID    | `TaskController.deletarTask`   |
 
 ### 3.7 Interface e Navegação (Semana 07)
 
