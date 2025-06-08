@@ -1,61 +1,60 @@
 const UserModel = require("../models/userModel");
+const UserService = require("../services/userServices");
 
 const UserController = {
-  async listarUser(req, res) {
+  //Fuction to create new user using userModel
+  async register(req, res) {
     try {
-      const user = await UserModel.getAllUser();
-      return res.status(200).json(user);
+      await UserService.registerUser(req.body);
+      return res.redirect("/");
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Erro ao listar usuários" });
+      return res.render("register", {
+        error: error.message,
+        ...req.body,
+      });
     }
   },
 
-  async obterUser(req, res) {
+  async checkEmail(req, res) {
+    const { email } = req.query;
+    const exists = await UserService.isEmailRegistered(email);
+    res.json({ exists });
+  },
+
+  //Fuction to update an existing user using userModel
+  async updateUser(req, res) {
     try {
-      const { id } = req.params;
-      const user = await UserModel.getUserById(id);
+      const updatedUser = await UserModel.updateUser(req.params.id, req.body);
+      return res.status(201).json(updatedUser);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: "Erro ao editar o usuário!" });
+    }
+  },
+
+  // Função para processar login
+  async login(req, res) {
+    try {
+      const { email, password } = req.body;
+      const user = await UserModel.verifyCredentials(email, password);
       if (!user) {
-        return res.status(404).json({ error: "Usuário não encontrado" });
+        return res.render("login", {
+          error: "E-mail ou senha inválidos.",
+          email: email,
+        });
       }
-      return res.status(200).json(user);
+      req.session.user = {
+        id: user.id, // ou user.id_app_user, conforme seu banco
+        name: user.name,
+        email: user.email,
+      };
+      return res.redirect("/home"); // Redirecione para a página principal após login
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: "Erro ao obter o usuário" });
-    }
-  },
-
-  async criarUser(req, res) {
-    try {
-      const novoUser = await UserModel.createUser(req.body);
-      return res.status(201).json(novoUser);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Erro ao criar o usuário" });
-    }
-  },
-
-  async atualizarUser(req, res) {
-    try {
-      const novoUser = await UserModel.updateUser(req.body);
-      return res.status(201).json(novoUser);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Erro ao atualizar o usuário" });
-    }
-  },
-
-  async deletarUser(req, res) {
-    try {
-      const { id } = req.params;
-      const user = await TaskModel.deleteUserById(id);
-      if (!user) {
-        return res.status(404).json({ error: "Usuário não encontrado" });
-      }
-      return res.status(200).json(user);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: "Erro ao deletar o usuário" });
+      return res.render("login", {
+        error: "Erro ao tentar fazer login.",
+        email: req.body.email,
+      });
     }
   },
 };

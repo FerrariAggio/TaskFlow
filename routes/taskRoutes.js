@@ -3,11 +3,14 @@ const express = require("express");
 const router = express.Router();
 const TaskController = require("../controllers/taskController");
 
-// Rotas para o CRUD de tarefas
-router.post("/task", TaskController.criarTask);
-router.get("/task", TaskController.listarTask);
-router.get("/task/:id", TaskController.obterTask);
-router.put("/task/:id", TaskController.atualizarTask);
-router.delete("/task/:id", TaskController.deletarTask);
+// Rotas para páginas
+router.get("/", TaskController.renderTaskList);
+router.get("/new", TaskController.renderCreateForm);
+router.get("/:id/edit", TaskController.renderEditForm);
+
+// Rotas para ações
+router.post("/create", TaskController.createTask);
+router.post("/:id/edit", TaskController.updateTask);
+router.post("/:id/delete", TaskController.deleteTask);
 
 module.exports = router;

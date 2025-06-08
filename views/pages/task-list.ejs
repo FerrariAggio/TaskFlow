@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Minhas Tarefas</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/task-list.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+  <header class="header">
+    <img src="/images/taskflow-logo.png" alt="Logo" class="logo">
+    <h1 class="titulo">Aqui estão todas as suas tarefas já criadas</h1>
+    <div class="user-icon" id="userIcon" tabindex="0">
+      <i class="bi bi-person" style="font-size: 2rem; margin-left: 0.5rem;"></i>
+    </div>
+    <div id="userPopup" class="user-popup" style="display:none;">
+      <form method="POST" action="/api/v1/users/logout" style="margin:0;">
+        <button type="submit" class="logout-btn">Finalizar Sessão</button>
+      </form>
+    </div>
+  </header>
+  <main>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1.5rem;">
+      <a href="/api/v1/tasks/new" class="create-task-btn">+ Nova Tarefa</a>
+    </div>
+    <table class="tasks-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Data</th>
+          <th>Prioridade</th>
+          <th>Status</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tasksTableBody">
+        <!-- As linhas serão preenchidas pelo JS -->
+      </tbody>
+    </table>
+  </main>
+  <script>
+    const userIcon = document.getElementById('userIcon');
+    const userPopup = document.getElementById('userPopup');
+
+    userIcon.addEventListener('click', function (e) {
+      e.stopPropagation();
+      userPopup.style.display = userPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Fecha o popup ao clicar fora
+    document.addEventListener('click', function (e) {
+      if (!userPopup.contains(e.target) && e.target !== userIcon) {
+        userPopup.style.display = 'none';
+      }
+    });
+
+    // Acessibilidade: fecha com ESC
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        userPopup.style.display = 'none';
+      }
+    });
+
+    function prioridadeClass(priority) {
+      if (!priority) return '';
+      const p = priority.toLowerCase();
+      if (p === 'alta') return 'priority-alta';
+      if (p === 'média' || p === 'media') return 'priority-media';
+      return 'priority-baixa';
+    }
+    function statusClass(status) {
+      if (!status) return '';
+      const s = status.toLowerCase();
+      if (s.includes('feito')) return 'status-concluida';
+      if (s.includes('fazendo')) return 'status-andamento';
+      return 'status-pendente';
+    }
+
+    async function fetchTasks() {
+      try {
+        const response = await fetch('/api/v1/tasks/');
+        if (!response.ok) throw new Error('Erro ao buscar suas tarefas');
+        const tasks = await response.json();
+        const tableBody = document.getElementById('tasksTableBody');
+        tableBody.innerHTML = '';
+        if (tasks.length > 0) {
+          tasks.forEach(task => {
+            // Formata a data corretamente
+            const date = task.conclusiondate
+              ? new Date(task.conclusiondate).toLocaleDateString('pt-BR')
+              : '';
+            tableBody.innerHTML += `
+              <tr class="task-row">
+                <td>${task.title}</td>
+                <td>${date}</td>
+                <td><span class="${prioridadeClass(task.priority)}">${task.priority}</span></td>
+                <td><span class="${statusClass(task.status)}">${task.status}</span></td>
+                <td>${task.category}</td>
+                <td>
+                  <a href="/api/v1/tasks/${task.id}/edit" class="edit-btn"><i class="bi bi-pencil-square"></i></a>
+                  <form method="POST" action="/api/v1/tasks/${task.id}/delete" style="display:inline; margin-left: 0.5rem;">
+                    <button type="submit" class="delete-btn"><i class="bi bi-trash"></i></button>
+                  </form>
+                </td>
+              </tr>
+            `;
+          });
+        } else {
+          tableBody.innerHTML = '<tr><td colspan="5">Nenhuma tarefa encontrada, que tal começarmos a dar um flow nas suas tarefas?</td></tr>';
+        }
+      } catch (error) {
+        console.error(error);
+        const tableBody = document.getElementById('tasksTableBody');
+        tableBody.innerHTML = '<tr><td colspan="5">Erro ao carregar as tarefas.</td></tr>';
+      }
+    }
+    fetchTasks();
+  </script>
+</body>
+
+</html>

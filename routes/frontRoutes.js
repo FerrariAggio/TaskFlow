@@ -1,21 +1,10 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const path = require('path');
+const path = require("path");
 
-// Roteamento para páginas dinâmicas
-router.get('/', (req, res) => {
-  res.render(path.join(__dirname, '../views/layout/main'), {
-    pageTitle: 'Página Inicial',
-    content: path.join(__dirname, '../views/pages/page1')
-  });
-});
-
-router.get('/about', (req, res) => {
-  res.render(path.join(__dirname, '../views/layout/main'), {
-    pageTitle: 'Página Inicial',
-    content: path.join(__dirname, '../views/pages/page2')
-  });
-});
+router.get("/", (req, res) => res.render("login")); // Rota para a página de login
+router.get("/register", (req, res) => res.render("register")); // Rota para a página de registro
+router.get("/home", (req, res) => res.render("task-list")); // Rota para a página de home
 
 // Adicione outras rotas conforme necessário
 

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Edição de Tarefa - TaskFlow</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/task-list.css">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+        }
+
+        .edit-header {
+            background: #329F5B;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 16px 16px 0 0;
+            padding: 1rem 2rem;
+            margin: 2rem auto 0 auto;
+            text-align: center;
+            width: 700px;
+            max-width: 95vw;
+            box-sizing: border-box;
+        }
+
+        .edit-container {
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+            display: flex;
+            padding: 3rem 2rem;
+            gap: 2rem;
+            align-items: center;
+            width: 700px;
+            max-width: 95vw;
+            min-height: 500px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .edit-form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            flex: 1 1 320px;
+            min-width: 260px;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .edit-form label {
+            color: #0C8346;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            width: 100%;
+        }
+
+        .edit-form input,
+        .edit-form select,
+        .edit-form textarea {
+            padding: 0.7rem;
+            border: 1px solid #8FD5A6;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .edit-form input:focus,
+        .edit-form select:focus,
+        .edit-form textarea:focus {
+            border: 1.5px solid #329F5B;
+        }
+
+        .edit-btn {
+            background: #0D5D56;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: background 0.2s;
+            width: 100%;
+        }
+
+        .edit-btn:hover {
+            background: #329F5B;
+        }
+
+        .error-message {
+            background: #E5C2C0;
+            color: #8B2C2C;
+            padding: 0.7rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .edit-illustration {
+            width: 320px;
+            min-width: 200px;
+            max-width: 340px;
+            height: 65vh;
+            background: #8FD5A6;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+        }
+
+        @media (max-width: 900px) {
+            .edit-container {
+                flex-direction: column;
+                align-items: stretch;
+                width: 95vw;
+                min-height: unset;
+                padding: 2rem 1rem;
+            }
+
+            .edit-illustration {
+                width: 100%;
+                height: 180px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="edit-header">
+        Edite sua tarefa
+    </div>
+    <div class="edit-container">
+        <% if (typeof error !=="undefined" ) { %>
+            <div class="error-message">
+                <%= error %>
+            </div>
+            <% } %>
+                <form class="edit-form" method="POST" action="/api/v1/tasks/<%= task.id %>/edit" autocomplete="off">
+                    <label for="title">Título</label>
+                    <input type="text" id="title" name="title" required value="<%= task.title %>">
+
+                    <label for="conclusion_date">Data limite</label>
+                    <input type="date" id="conclusion_date" name="conclusion_date" required
+                        value="<%= task.conclusion_date ? task.conclusion_date.toISOString().slice(0,10) : '' %>">
+
+                    <label for="description">Descrição da tarefa</label>
+                    <textarea id="description" name="description" rows="5" required><%= task.description %></textarea>
+
+                    <label for="priority_id">Prioridade</label>
+                    <select id="priority_id" name="priority_id" required>
+                        <option value="">Selecione</option>
+                        <% priorityList.forEach(function(priority) { %>
+                            <option value="<%= priority.id %>" <%=task.priority_id==priority.id ? 'selected' : '' %>><%=
+                                    priority.name %>
+                            </option>
+                            <% }); %>
+                    </select>
+
+                    <label for="category_id">Categoria</label>
+                    <select id="category_id" name="category_id" required>
+                        <option value="">Selecione</option>
+                        <% categoryList.forEach(function(category) { %>
+                            <option value="<%= category.id %>" <%=task.category_id==category.id ? 'selected' : '' %>><%=
+                                    category.name %>
+                            </option>
+                            <% }); %>
+                    </select>
+
+                    <label for="status_id">Status</label>
+                    <select id="status_id" name="status_id" required>
+                        <option value="">Selecione</option>
+                        <% statusList.forEach(function(status) { %>
+                            <option value="<%= status.id %>" <%=task.status_id==status.id ? 'selected' : '' %>><%=
+                                    status.name %>
+                            </option>
+                            <% }); %>
+                    </select>
+
+                    <button class="edit-btn" type="submit">Salvar Alterações</button>
+                </form>
+                <div class="edit-illustration">
+                    <img src="/images/create-image.svg" alt="Ilustração de edição" style="width:90%;height:auto;">
+                </div>
+    </div>
+</body>
+
+</html>

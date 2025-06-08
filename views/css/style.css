@@ -1,60 +1,237 @@
-/* Reset básico para remover estilos padrão do navegador */
+/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Estilo para o corpo da página */
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f0f0;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Estilo para o cabeçalho */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fonte principal */
+body {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  color: #222;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Cabeçalho */
+header {
+  background-color: #329f5b;
+  color: #222;
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 4%;
+  height: 4%;
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  color: #fff;
+}
+
+.user-icon {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 50%;
+  background-image: url("/images/user-icon.svg");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Botões */
+button,
+.button {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.button-green,
+button.button-green {
+  background: #329f5b;
+  color: #fff;
+}
+
+.button-green:hover,
+button.button-green:hover {
+  background: #0c8346;
+}
+
+.button-outline,
+button.button-outline {
+  background: #fff;
+  color: #329f5b;
+  border: 2px solid #329f5b;
+}
+
+.button-outline:hover,
+button.button-outline:hover {
+  background: #8fd5a6;
+}
+
+.button-red,
+button.button-red {
+  background: #e5c2c0;
+  color: #222;
+}
+
+.button-red:hover,
+button.button-red:hover {
+  background: #cfa2a0;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  border: 1px solid #8fd5a6;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  border: 2px solid #329f5b;
+}
+
+/* Links */
+a {
+  color: #329f5b;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0c8346;
+  text-decoration: underline;
+}
+
+/* Títulos */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+h1 {
+  color: #329f5b;
+  font-size: 2rem;
+}
+h2 {
+  color: #8fd5a6;
+  font-size: 1.5rem;
+}
+h3 {
+  color: #e5c2c0;
+  font-size: 1.2rem;
+}
+h4,
+h5 {
+  color: #222;
+}
+
+/* Tabela base */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  margin: 0 auto;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+th {
+  background: #0c8346;
+  color: #fff;
+}
+
+td {
+  background: #8fd5a6;
+}
+
+/* Cores de prioridade */
+tr.alta td {
+  background: #e5c2c0;
+}
+tr.media td {
+  background: #8fd5a6;
+}
+tr.baixa td {
+  background: #329f5b;
+  color: #fff;
+}
+
+/* Dropdown e filtros */
+.filter-dropdown {
+  position: relative;
+}
+
+#filterBtn {
+  background: #fff;
+  color: #329f5b;
+  border: 1px solid #329f5b;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.filter-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 12px;
+  z-index: 10;
+}
+
+.filter-dropdown.open .filter-menu {
+  display: block;
+}
+
+/* Responsividade */
+@media (max-width: 800px) {
   header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
   }
-  
-  /* Estilo para a navegação dentro do cabeçalho */
-  header nav ul {
-    list-style-type: none;
+  .titulo {
+    font-size: 1.3rem;
   }
-  
-  header nav ul li {
-    display: inline;
-    margin-right: 20px;
+  th,
+  td {
+    font-size: 0.95rem;
+    padding: 8px;
   }
-  
-  header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  header nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Estilo para o conteúdo principal */
-  main {
-    padding: 20px;
-  }
-  
-  /* Estilo para o rodapé */
-  footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
+}
