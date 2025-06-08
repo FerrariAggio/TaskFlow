@@ -263,7 +263,35 @@ Endpoints são pontos de entrada ou saída em uma aplicação web, utilizados pa
 
 ### 3.7 Interface e Navegação (Semana 07)
 
-_Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+Ao acessar a aplicação, o usuário é direcionado inicialmente para a tela de login, onde deve informar seu e-mail e senha. Essa tela também oferece um botão de acesso à tela de cadastro para novos usuários. A lógica de autenticação garante que apenas usuários previamente cadastrados possam acessar a área principal do sistema. Se o login for realizado com sucesso, o usuário é redirecionado para a tela principal da aplicação. Caso contrário, uma mensagem de erro é exibida informando sobre credenciais inválidas.
+
+A tela de cadastro permite que novos usuários criem uma conta informando nome, e-mail, senha e confirmação de senha. A aplicação verifica se as senhas coincidem, seguindo regras básicas de segurança. Com todos os dados válidos, o usuário é cadastrado no sistema e direcionado de volta à tela de login com uma mensagem de sucesso.
+
+Após o login, o usuário é levado para a tela principal (home) da aplicação, onde todas as suas tarefas são listadas. Cada tarefa é exibida em um formato visual organizado em forma de lista, contendo título, data, categoria, prioridade e status. No canto superior da interface, há um ícone de usuário que, ao ser clicado, realiza o logout e retorna o usuário à tela de login. Na mesma tela principal, há um botão destacado para criação de uma nova tarefa, que leva o usuário a uma tela específica para essa ação.
+
+Na tela de criação de tarefa, o usuário pode preencher campos como título, descrição, status (por exemplo, a fazer, fazendo e feito), categoria, prioridade e data de entrega. A aplicação valida os dados inseridos e, ao clicar em “Salvar”, a nova tarefa é adicionada à lista principal e o usuário é redirecionado de volta à home.
+
+Cada tarefa listada na tela principal oferece opções de edição e exclusão. Ao clicar em excluir, a tarefa é removida permanentemente do sistema. Já ao selecionar a opção de edição, o usuário é redirecionado para uma tela específica de edição, onde os dados atuais da tarefa são carregados em um formulário. O usuário pode alterar as informações desejadas e salvar as mudanças, retornando à tela principal com os dados atualizados.
+
+**Tela 1: Login**
+
+<img src="/assets/wad/login-final.png">
+
+**Tela 2: Cadastro**
+
+<img src="/assets/wad/cadastro-final.png">
+
+**Tela 3: Home**
+
+<img src="/assets/wad/home-final.png">
+
+**Tela 4: Criação de Tarefa**
+
+<img src="/assets/wad/criarTarefa-final.png">
+
+**Tela 5: Edição de Tarefa**
+
+<img src="/assets/wad/editarTarefa-final.png">
 
 ---
 
