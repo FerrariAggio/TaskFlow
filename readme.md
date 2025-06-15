@@ -4,8 +4,8 @@ Este projeto é um boilerplate básico para uma aplicação Node.js seguindo o p
 
 ## Requisitos
 
-- Node.js (versão X.X.X)
-- PostgreSQL (versão X.X.X)
+- Node.js
+- PostgreSQL
 
 ## Instalação
 

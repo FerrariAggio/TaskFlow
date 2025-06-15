@@ -295,22 +295,36 @@ Cada tarefa listada na tela principal oferece opções de edição e exclusão. 
 
 ---
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>4. Desenvolvimento da Aplicação Web
 
-### 4.1 Demonstração do Sistema Web (Semana 8)
+### 4.1 Demonstração do Sistema Web
 
-_VIDEO: Insira o link do vídeo demonstrativo nesta seção_
-_Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+<a href="/assets/wad/vídeoDemonstrativo_taskFlow.mp4">VIDEO DEMONSTRATIVO</a>
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+O vídeo inicia com a exibição da tela de login da aplicação TaskFlow e a demonstração da verificação de credenciais de um usuário identificando que aqueles dados não estão cadastrados no banco de dados, logo o usuário clica em criar conta, sendo redirecionado para outra tela da aplicação. Ele então preenche o formulário de cadastro, cria sua conta e é redirecionado novamente para tela de login.
 
-_Indique pontos fortes e pontos a melhorar de maneira geral._
-_Relacione também quaisquer outras ideias que você tenha para melhorias futuras._
+Em seguida, o usuário realiza o login preenchendo os campos com suas credenciais e clicando no botão de entrada. Após a autenticação ser concluída com sucesso, ele é redirecionado para a tela principal da aplicação. Essa tela exibe uma lista de tarefas organizadas de forma clara, onde cada tarefa é representada por um cartão contendo seu título e informações associadas. No topo da tela, é possível visualizar um ícone de usuário que provavelmente permite o logout ou o acesso às configurações da conta.
+
+Durante a navegação, o usuário demonstra a criação de uma nova tarefa. Para isso, ele clica em um botão destacado (geralmente representado por um símbolo de “+” ou um botão com texto), sendo direcionado a um formulário onde insere os dados da nova tarefa, como o título e uma descrição. Após preencher as informações, ele confirma a operação, e a nova tarefa aparece imediatamente na lista da tela principal.
+
+O vídeo também mostra a funcionalidade de exclusão de tarefas. O usuário interage com uma tarefa existente e aciona um botão de exclusão (normalmente representado por um ícone de lixeira). A tarefa selecionada é então removida da interface, evidenciando que a operação foi realizada com sucesso.
+
+Por fim, o usuário encerra a sessão clicando no ícone de perfil localizado no canto superior da tela e seleciona a opção de logout, retornando assim à tela inicial de login. Dessa forma, o vídeo demonstra de forma objetiva e funcional os principais recursos da aplicação TaskFlow: login, criação e exclusão de tarefas, navegação entre telas e logout do sistema.
+
+### 4.2 Conclusões e Trabalhos Futuros
+
+A aplicação TaskFlow apresenta avanços significativos em sua versão atual, especialmente por já contar com a implementação funcional da sessão de usuário e pela entrega de um MVP completo que cumpre os objetivos principais propostos. A navegação entre as telas, o fluxo de login, criação, visualização e exclusão de tarefas funcionam corretamente, o que comprova a viabilidade da solução.
+
+Entre os pontos fortes, destaca-se a estruturação inicial da autenticação, garantindo que cada usuário tenha acesso a seus próprios dados de forma isolada e segura. Além disso, o desenvolvimento de um MVP já funcional é um marco relevante, pois permite validar a proposta da aplicação de forma prática e iterativa.
+
+Por outro lado, há pontos importantes a serem aprimorados. O código da aplicação ainda necessita de melhorias em termos de organização, legibilidade e padronização, de forma a facilitar futuras manutenções e expansões. Outro aspecto que merece atenção é o design da interface, que, embora funcional, pode ser repensado para oferecer uma experiência mais moderna, intuitiva e responsiva para diferentes tipos de usuários.
+
+Quanto às ideias para melhorias futuras, há três propostas bastante relevantes que devem ser priorizadas com base em feedbacks e boas práticas de usabilidade. A primeira é a implementação de um calendário demonstrativo, que permitirá uma visualização mais intuitiva e temporal das tarefas cadastradas, facilitando o planejamento e acompanhamento dos prazos. A segunda é a reestruturação da lista de tarefas em um modelo kanban, o que trará uma experiência visual mais rica e eficiente na gestão de fluxo das atividades, com colunas como “A Fazer”, “Em Progresso” e “Concluído”. Por fim, outra sugestão importante é a adição de mais categorias de tarefas, permitindo que os usuários classifiquem melhor suas demandas com base em tipos, prioridades ou áreas de atuação.
+
+Essas melhorias não só elevarão o nível da aplicação em termos de usabilidade e funcionalidade, como também demonstram uma escuta ativa ao usuário e uma preocupação constante com a evolução contínua do produto.
 
 ## <a name="c5"></a>5. Referências
 
-_Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site:_<br>
-
----
+As principais referências utilizadas para a elaboração dessa aplicação foram sites de organização de tarefas, sendo alguns deles a ClickUp, monday.com, Notion e Miro.<br>
 
 ---
