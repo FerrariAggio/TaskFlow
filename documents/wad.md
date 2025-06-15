@@ -299,7 +299,7 @@ Cada tarefa listada na tela principal oferece opções de edição e exclusão. 
 
 ### 4.1 Demonstração do Sistema Web
 
-<a href="/assets/wad/vídeoDemonstrativo_taskFlow.mp4">VIDEO DEMONSTRATIVO</a>
+<a href="https://youtu.be/h5hH5IsNvws">VIDEO DEMONSTRATIVO</a>
 
 O vídeo inicia com a exibição da tela de login da aplicação TaskFlow e a demonstração da verificação de credenciais de um usuário identificando que aqueles dados não estão cadastrados no banco de dados, logo o usuário clica em criar conta, sendo redirecionado para outra tela da aplicação. Ele então preenche o formulário de cadastro, cria sua conta e é redirecionado novamente para tela de login.
 
